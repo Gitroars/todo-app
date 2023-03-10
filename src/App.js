@@ -45,6 +45,16 @@ function TodoForm({addTodo}){
   );
 }
 
+function FilterForm({activeTodos,completedTodos}){
+  return(
+    <div>
+      <button onClick={()=>activeTodos()}>Active</button>
+      <button onClick={()=>completedTodos()}>Completed</button>
+      <button >All</button>
+    </div> 
+  )
+}
+
 
 
 
@@ -73,16 +83,17 @@ function App() {
     setTodos(newTodos);
   }
 
-  
-  
+  const [filter,setFilter] = useState(null);
+   
 
-  const activeTodos = todos.filter(
-    (e)=> e.isCompleted === false
-  );
 
-  const completedTodos = todos.filter(
-    (e) => e.isCompleted === true
-  );
+  const activeTodos = todos.filter((item)=>{
+    return item.isCompleted === false;
+  })
+
+  const completedTodos = todos.filter((item)=>{
+    return item.isCompleted === true;
+  })
 
   function showActive(){
     setTodos(activeTodos);
@@ -90,9 +101,8 @@ function App() {
   function showCompleted(){
     setTodos(completedTodos);
   }
-  function showAll(){
-    setTodos(todos);
-  }
+  
+  
  
 
   
@@ -105,10 +115,8 @@ function App() {
       </div>
     
       <div className="todo-list">
-        <button>Completed</button>
-        <button >Active</button>
-        <button >All</button>
-
+        
+      <FilterForm filterForm = {FilterForm}/>
       <TodoForm addTodo={addTodo}/>
       
         {todos.map((todo, index) => (
