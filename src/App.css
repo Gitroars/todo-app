@@ -1,6 +1,10 @@
 .app {
-  background: #209cee;
+  background-image: url('beautiful_tree.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
+  width: 100vw;
   padding: 30px;
 }
 
