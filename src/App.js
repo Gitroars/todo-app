@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect,useMemo,useState } from "react";
 import "./App.css";
 import {ImCheckmark,ImCross} from 'react-icons/im'
 import PageTitle from "./components/PageTitle";
+import { act, isCompositeComponentWithType } from "react-dom/test-utils";
+
+
 
 function Todo({ todo,index,completeTodo,removeTodo}) {
   return (
@@ -15,6 +18,8 @@ function Todo({ todo,index,completeTodo,removeTodo}) {
     </div>
   );
 };
+
+
 
 function TodoForm({addTodo}){
   const [value,setValue] = React.useState("");
@@ -41,10 +46,15 @@ function TodoForm({addTodo}){
 }
 
 
+
+
+
+
 function App() {
   const [todos, setTodos] = React.useState([
-    
+    {text:"Create your first to do", isCompleted:false}
   ]);
+  
   {/*Add a new task*/}
   const addTodo = text =>{
     const newTodos = [...todos,{text}];
@@ -63,13 +73,44 @@ function App() {
     setTodos(newTodos);
   }
 
+  
+  
+
+  const activeTodos = todos.filter(
+    (e)=> e.isCompleted === false
+  );
+
+  const completedTodos = todos.filter(
+    (e) => e.isCompleted === true
+  );
+
+  function showActive(){
+    setTodos(activeTodos);
+  }
+  function showCompleted(){
+    setTodos(completedTodos);
+  }
+  function showAll(){
+    setTodos(todos);
+  }
+ 
+
+  
+  
+
   return (
     <div className="app">
       <div className="main-title">
         <PageTitle></PageTitle>
       </div>
+    
       <div className="todo-list">
+        <button>Completed</button>
+        <button >Active</button>
+        <button >All</button>
+
       <TodoForm addTodo={addTodo}/>
+      
         {todos.map((todo, index) => (
           <Todo
             key={index}
