@@ -1,3 +1,5 @@
+
+
 .app {
   background-image: url('beautiful_tree.png');
   background-position: center;
@@ -13,9 +15,11 @@
   border-radius: 4px;
   max-width: 400px;
   padding: 5px;
+  
 }
 
 .todo {
+
   align-items: center;
   background: #fff;
   border-radius: 3px;

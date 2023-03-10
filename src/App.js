@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import {ImCheckmark,ImCross} from 'react-icons/im'
+
+
 function Todo({ todo,index,completeTodo,removeTodo}) {
   return (
     <div className="todo"
@@ -30,16 +32,18 @@ function TodoForm({addTodo}){
       value={value}
       onChange={e=>setValue(e.target.value)}
       />
+      {/* A button that adds a new task */}
+      <button onClick={handleSubmit}>Enter</button>
+      
     </form>
+    
   );
 }
 
 
 function App() {
   const [todos, setTodos] = React.useState([
-    { text: "Read a book" , isCompleted:false},
-    { text: "Eat lunch", isCompleted:false },
-    { text: "Learn programming", isCompleted:false }
+    
   ]);
   {/*Add a new task*/}
   const addTodo = text =>{
@@ -62,6 +66,7 @@ function App() {
   return (
     <div className="app">
       <div className="todo-list">
+      <TodoForm addTodo={addTodo}/>
         {todos.map((todo, index) => (
           <Todo
             key={index}
@@ -71,7 +76,7 @@ function App() {
             removeTodo = {removeTodo}
           />
         ))}
-        <TodoForm addTodo={addTodo}/>
+        
       </div>
     </div>
   );
