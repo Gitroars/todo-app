@@ -1,4 +1,7 @@
-
+.main-title{
+  font-weight: bold;
+  color: white;
+}
 
 .app {
   background-image: url('beautiful_tree.png');
